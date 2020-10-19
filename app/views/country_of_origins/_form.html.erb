@@ -1,0 +1,67 @@
+
+<%= form_for(@country_of_origin, html: { class: "form-horizontal", role: "form" }) do |f| %>
+  <% if @country_of_origin.errors.any? %>
+    <div class="alert alert-danger alert-dismissable" role="alert">
+      <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+      <h4><%= pluralize(@country_of_origin.errors.count, "error") %> prohibited this country_of_origin from being saved:</h4>
+      <ul>
+      <% @country_of_origin.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
+  <div class="form-group">
+            <%= f.label :name, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+        <%= f.text_field :name, class: "form-control" %>
+      </div>
+        </div>
+  <div class="form-group">
+            <%= f.label :ctype, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+   <%= f.autocomplete_field :ctype, autocomplete_pfeature_name_country_of_origins_path , 'min-length' => 1 , 'data-auto-focus' => true %>
+
+      </div>
+        </div>
+  <div class="form-group">
+            <%= f.label :fdate, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+        <%= f.datetime_select :fdate, class: "form-control" %>
+      </div>
+        </div>
+  <div class="form-group">
+            <%= f.label :active_status, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+        <%= f.number_field :active_status, class: "form-control" %>
+      </div>
+        </div>
+  <div class="form-group">
+            <%= f.label :sort_order, class: "col-sm-2 control-label" %>
+        <div class="col-sm-10">
+        <%= f.number_field :sort_order, class: "form-control" %>
+      </div>
+        </div>
+
+  <hr>
+  <div class="field">
+    <%= f.label :avatar %>
+    <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (A new choice will replace previous one.)</p>
+    <%= f.file_field :avatar %>
+  </div>
+  <br>
+  <div class="field">
+  <%= f.label :documents %>
+    <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; (Choosing files will add to previous ones..)</p>
+    <%= f.file_field :documents, multiple: true %>
+  </div>
+  <hr>
+  
+
+  <div class="form-group">
+    <div class="col-sm-offset-2 col-sm-10">
+      <%= f.submit class: "btn btn-primary" %>
+    </div>
+  </div>
+<% end %>

@@ -1,0 +1,48 @@
+<%#  Modified 2020-02-01 %>
+<p>
+  <strong>Name:</strong>
+  <%= @product.name %>
+</p>
+
+<p>
+  <strong>Pcolor:</strong>
+  <%= @product.pcolor %>
+</p>
+
+<p>
+  <strong>Country of origin:</strong>
+  <%= @product.country_of_origin.name %>
+</p>
+
+<p>
+  <strong>Pdate:</strong>
+  <%= @product.pdate %>
+</p>
+
+<p>
+  <strong>Active status:</strong>
+  <%= @product.active_status %>
+</p>
+
+<p>
+  <strong>Sort order:</strong>
+  <%= @product.sort_order %>
+</p>
+
+<p>
+<strong>Features:</strong>
+<ul>
+<% @product.pfeature.each do |v1| %>
+	<li>
+    <%= link_to v1.name, v1%>
+    </li>
+<% end %>
+</ul>
+</p>
+
+<br>
+<%= link_to "Send product test email", {controller: 'products', action: 'product_email', id: @product.id}, class: "btn btn-primary", :style=>'color:#FFFFFF;'%>
+<br>
+<br>
+<%= link_to 'Edit', edit_product_path(@product), class: "btn btn-primary", :style=>'color:#FFFFFF;' %> &nbsp &nbsp
+<%= link_to 'Back', products_path, class: "btn btn-default" %> &nbsp &nbsp

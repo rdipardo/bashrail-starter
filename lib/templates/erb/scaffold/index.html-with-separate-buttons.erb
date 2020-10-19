@@ -1,0 +1,59 @@
+
+<row class="row is-table-row" >
+
+  <div class="col-sm-1 ">
+    <%%= link_to 'Create', new_<%= singular_table_name %>_path , class: "btn btn-success"%>
+  </div>
+
+  <div class="col-sm-2 ">
+    <h4>Listing <%= plural_table_name.titleize -%></h4>
+  </div>
+
+  <div class="col-sm-3">
+    <%%= search_form_for @q, class: 'search-form' do |f| %>
+      <div class="input-group">
+        <%%= f.search_field :<%= attributes.first.name %>_cont, class: 'form-control' %>
+        <span class="input-group-btn">
+          <button class="btn btn-primary">Search <i class="fa fa-search"></i>
+          </button>
+        </span>
+      </div>
+    <%% end %>
+  </div>
+
+  <div class="col-sm-4 ">
+    <%%= paginate @<%= plural_table_name %> %>
+  </div>
+  
+  <div class="col-sm-2 ">
+    <%%= page_entries_info @<%= plural_table_name %>, :entry_name => 'item' %>
+  </div>
+  
+</row>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th colspan="3"></th>
+      <% attributes.reject(&:password_digest?).each do |attribute| -%>
+      <th><%= attribute.human_name %></th>
+<% end -%>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%% @<%= plural_table_name %>.each do |<%= singular_table_name %>| %>
+      <tr>
+        <td><%%= link_to 'Show', <%= singular_table_name %>, class: "btn btn-info", :style=>'color:#FFFFFF;' %></td>
+        <td><%%= link_to 'Edit', edit_<%= singular_table_name %>_path(<%= singular_table_name %>), class: "btn btn-primary", :style=>'color:#FFFFFF;' %></td>
+        <td><%%= link_to 'Destroy', <%= singular_table_name %>, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning", :style=>'color:#FFFFFF;' %></td>
+<% attributes.reject(&:password_digest?).each do |attribute| -%>
+        <td><%%= <%= singular_table_name %>.<%= attribute.name %> %></td>
+<% end -%>
+      </tr>
+    <%% end %>
+  </tbody>
+</table>
+
+<br>

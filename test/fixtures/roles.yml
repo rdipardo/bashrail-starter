@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+<% require 'faker' %>
+primero:
+  name: <%= Faker::Name.unique.name %>
+  description: <%= Faker::Lorem.sentence %>
+  active_status: 1
+  sort_order: 1
+
+segundo:
+  name: <%= Faker::Name.unique.name %>
+  description: <%= Faker::Lorem.sentence %>
+  active_status: 1
+  sort_order: 1

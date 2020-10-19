@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<!--
+To ..
+examples...
+<table cellpadding="5" cellspacing="0" border="1"   bgcolor="#ecffe5">
+<table rules="all" border="1"  cellpadding="5" cellspacing="0">
+-->
+
+<html>
+    <head>
+        <title>Email.</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+        <style>
+            table {   border-collapse: collapse; cellspacing: 0px;}
+            th, td {  text-align: left;  padding: 6px;  border: 1px solid black; background-color: #ecffe5; }
+            tr:nth-child(even) {background-color: #f2f2f2}
+
+            dt, dd { display: block; float: left; margin-top: 7px; }
+            dt { clear: both; }
+        </style>
+    </head>
+
+    <body>
+
+        <strong><%= Product.human_attribute_name :name %>  </strong> :&nbsp;  <%= @product.name %> &nbsp;&nbsp;&nbsp;
+
+        <hr />
+
+        <p>
+            Contact <a href="mailto:some1@example.com">the maintainers of <em><%= Rails.application.class.parent_name %></em></a> if you have any questions about this automated email.
+        </p>
+    </body>
+</html>
+

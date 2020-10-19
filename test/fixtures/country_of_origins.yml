@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+<% require 'faker' %>
+premier:
+  name: <%= Faker::WorldCup.team %>
+  ctype: <%= Faker::Number.within(range: 1..6).to_s %>
+  fdate: <%= Time.now %>
+  active_status: 1
+  sort_order: 1
+
+deuxieme:
+  name: <%= Faker::WorldCup.team %>
+  ctype: <%= Faker::Number.within(range: 1..6).to_s %>
+  fdate: <%= Time.now %>
+  active_status: 1
+  sort_order: 1

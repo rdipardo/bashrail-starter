@@ -1,0 +1,28 @@
+# !!!
+# you must name a `host` to connect over TCP:
+# https://gist.github.com/AtulKsol/4470d377b448e56468baef85af7fd614
+# !!!
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  # set these in docker/postgres.env
+  host: <%= ENV['PGHOST'] || 'localhost' %>
+  username: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  timeout: 5000
+
+development:
+  <<: *default
+  database: bashraildb_development
+
+# Warning: The database defined as "test" will be erased and
+# re-generated from your development database when you run "rake".
+# Do not set this db to the same as development or production.
+test:
+  <<: *default
+  database: bashraildb_test
+
+production:
+  <<: *default
+  database: bashraildb_production

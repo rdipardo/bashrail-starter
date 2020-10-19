@@ -1,0 +1,24 @@
+
+<p>
+  <strong>Name:</strong>
+  <%= @pfeature.name %>
+</p>
+
+<p>
+  <strong>Fdate:</strong>
+  <%= @pfeature.fdate %>
+</p>
+
+<p>
+  <strong>Active status:</strong>
+  <%= @pfeature.active_status %>
+</p>
+
+<p>
+  <strong>Sort order:</strong>
+  <%= @pfeature.sort_order %>
+</p>
+
+<br>
+<%= link_to 'Edit', edit_pfeature_path(@pfeature), class: "btn btn-primary", :style=>'color:#FFFFFF;' %> &nbsp &nbsp
+<%= link_to 'Back', pfeatures_path, class: "btn btn-default" %>

@@ -1,0 +1,62 @@
+
+<p>
+  <strong>Name:</strong>
+  <%= @country_of_origin.name %>
+</p>
+
+<p>
+  <strong>Ctype:</strong>
+  <%= @country_of_origin.ctype %>
+</p>
+
+<p>
+  <strong>Fdate:</strong>
+  <%= @country_of_origin.fdate %>
+</p>
+
+<p>
+  <strong>Active status:</strong>
+  <%= @country_of_origin.active_status %>
+</p>
+
+<p>
+  <strong>Sort order:</strong>
+  <%= @country_of_origin.sort_order %>
+</p>
+
+<hr>
+<p>
+<strong>Avatar:</strong> <br><br>
+      Syntax type 1:
+      <%= if  @country_of_origin.avatar.attached? then
+            link_to @country_of_origin.avatar.blob.filename, url_for(@country_of_origin.avatar)
+          end %>
+      <br>
+      <%= if  @country_of_origin.avatar.attached? then
+            if @country_of_origin.avatar.image?  then (image_tag @country_of_origin.avatar.variant(resize: "180x180")) end
+          end %>
+      <br>
+      Syntax type 2:
+      <%= if  @country_of_origin.avatar.attached? then
+      		link_to @country_of_origin.avatar.filename, rails_blob_path(@country_of_origin.avatar, disposition: 'preview')
+          end %>
+</p>
+<br>
+<p>
+  <strong>Documents:</strong>
+  <ul>
+   <% @country_of_origin.documents.each do |document| %>
+      <li><%= link_to document.blob.filename, url_for(document) %></li>
+      <%# show thumbnail if it is an image.. %>
+      <%= if document.image?  then ( image_tag document.variant(resize: "180x180") )  end %>
+          <%= link_to 'Remove', delete_document_attachment_country_of_origin_url(document),
+                    method: :delete,
+                    data: { confirm: 'Are you sure you want to delete?' } %>
+   <% end %>
+  </ul>
+</p>
+<hr>
+
+<br>
+<%= link_to 'Edit', edit_country_of_origin_path(@country_of_origin), class: "btn btn-primary", :style=>'color:#FFFFFF;' %> &nbsp &nbsp
+<%= link_to 'Back', country_of_origins_path, class: "btn btn-default" %>

@@ -1,0 +1,14 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+<% require 'faker' %>
+一:
+  name: <%= Faker::Color.color_name %>
+  color: <%= Faker::Color.hex_color  %>
+  active_status: 1
+  sort_order: 2
+
+二:
+  name: <%= Faker::Color.color_name %>
+  color: <%= Faker::Color.hex_color %>
+  active_status: 1
+  sort_order: 2
+

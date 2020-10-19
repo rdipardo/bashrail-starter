@@ -1,0 +1,62 @@
+
+<row class="row is-table-row" >
+
+  <div class="col-sm-1 ">
+    <%= link_to 'Create', new_example_path , class: "btn btn-success"%>
+  </div>
+
+  <div class="col-sm-2 ">
+    <h4>Listing Examples</h4>
+  </div>
+
+  <div class="col-sm-3">
+    <%= search_form_for @q, class: 'search-form' do |f| %>
+      <div class="input-group">
+        <%= f.search_field :name_cont, class: 'form-control' %>
+        <span class="input-group-btn">
+          <button class="btn btn-primary">Search <i class="fa fa-search"></i>
+          </button>
+        </span>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-sm-4 ">
+    <%= paginate @examples %>
+  </div>
+  
+  <div class="col-sm-2 ">
+    <%= page_entries_info @examples, :entry_name => 'item' %>
+  </div>
+  
+</row>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th colspan="1"></th>
+            <th>Name</th>
+      <th>Color</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @examples.each do |example| %>
+      <tr>
+        <td>
+          <div class="btn-group">
+          <%= link_to 'Show', example, class: "btn btn-info", :style=>'color:#FFFFFF;' %>
+          <%= link_to 'Edit', edit_example_path(example), class: "btn btn-primary", :style=>'color:#FFFFFF;' %>
+          <% #commentedout  = link_to 'Destroy', example, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning", :style=>'color:#FFFFFF;' %>
+          </div>
+        </td>
+        
+        <td><%= example.name %></td>
+        <td><%= example.color %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

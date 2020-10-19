@@ -1,0 +1,69 @@
+<%#  Modified 2020-02-01 %>
+<row class="row is-table-row" >
+
+  <div class="col-sm-1 ">
+    <%= link_to 'Create', new_country_of_origin_path , class: "btn btn-success"%>
+  </div>
+
+  <div class="col-sm-2 ">
+    <h4>Listing Country Of Origins</h4>
+  </div>
+
+  <div class="col-sm-3">
+    <%= search_form_for @q, class: 'search-form' do |f| %>
+      <div class="input-group">
+        <%= f.search_field :name_cont, class: 'form-control' %>
+        <span class="input-group-btn">
+          <button class="btn btn-primary">Search <i class="fa fa-search"></i>
+          </button>
+        </span>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="col-sm-4 ">
+    <%= paginate @country_of_origins %>
+  </div>
+
+  <div class="col-sm-2 ">
+    <%= page_entries_info @country_of_origins, :entry_name => 'item' %>
+  </div>
+
+</row>
+
+
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th colspan="1"></th>
+            <th>Name</th>
+      <th>Ctype</th>
+      <th>Fdate</th>
+      <th>Active status</th>
+      <th>Sort order</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @country_of_origins.each do |country_of_origin| %>
+      <tr>
+        <td>
+          <div class="btn-group">
+          <%= link_to 'Show', country_of_origin, class: "btn btn-info", :style=>'color:#FFFFFF;' %>
+          <%= link_to 'Edit', edit_country_of_origin_path(country_of_origin), class: "btn btn-primary", :style=>'color:#FFFFFF;' %>
+          <% #commentedout  = link_to 'Destroy', country_of_origin, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-warning", :style=>'color:#FFFFFF;' %>
+          </div>
+        </td>
+
+        <td><%= country_of_origin.name %></td>
+        <td><%= country_of_origin.ctype %></td>
+        <td><%= country_of_origin.fdate %></td>
+        <td><%= country_of_origin.active_status %></td>
+        <td><%= country_of_origin.sort_order %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+<%= link_to 'Home', '/', class: "btn btn-default" %>

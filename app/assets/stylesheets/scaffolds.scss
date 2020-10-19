@@ -1,0 +1,151 @@
+body {
+  background-color: #fff;
+  color: #333;
+  margin: 33px;
+  font-family: "Ubuntu", "DejaVu Sans", sans-serif !important;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+main { padding: .75em 4em; }
+
+h2,
+h3,
+h4,
+h5,
+h6 { font-style: oblique; }
+
+h2,
+h3,
+h4,
+h5,
+h6,
+li {
+  padding-top: .75em;
+  padding-bottom: .5em;
+}
+
+h1 { text-shadow: 2px 2px 4px #969696; }
+
+h1,
+footer {
+    text-align: center;
+}
+
+p,
+ol,
+ul,
+td {
+  font-family: "DejaVu Sans", sans-serif;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+ul {
+    list-style: circle;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a {
+  color: #000;
+  text-decoration: none;
+  padding-top: .25em;
+  padding-bottom: .25em;
+
+  &:visited {
+    color: #666;
+    text-decoration: none;
+  }
+
+  &:hover:not(.btn),
+  &:active:not(.btn),
+  &:focus:not(.btn) {
+    font-style: oblique;
+    text-decoration: none;
+  }
+}
+
+.btn {
+  font-weight: 600;
+
+  &:btn-default {
+    background-color: #999;
+  }
+}
+
+th {
+  padding-bottom: 5px;
+}
+
+td {
+  padding: 0 5px 7px;
+}
+
+div {
+  &.field, &.actions {
+    margin-bottom: 10px;
+  }
+}
+
+#notice {
+  color: green;
+}
+
+.field_with_errors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#error_explanation {
+  width: 450px;
+  border: 2px solid red;
+  padding: 7px 7px 0;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+
+  h2 {
+    text-align: left;
+    font-weight: bold;
+    padding: 5px 5px 5px 15px;
+    font-size: 12px;
+    margin: -7px -7px 0;
+    background-color: #c00;
+    color: #fff;
+  }
+
+  ul li {
+    font-size: 12px;
+    list-style: square;
+  }
+}
+
+label {
+  font-family: "Ubuntu", "DejaVu Sans", sans-serif;
+  display: block;
+  padding: 0 .5em;
+}
+
+blockquote {
+  color: #999;
+  font-size: 85%;
+}
+
+footer {
+  font-weight: 600;
+  font-size: 1em;
+  padding-bottom: 1.25em
+}
+
+@media screen and (max-width: 480px) {
+  main { padding: .25em 1.75em; }
+  span {
+    display: block;
+    padding: .75em 0 0;
+  }
+}

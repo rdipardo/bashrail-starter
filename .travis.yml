@@ -1,0 +1,31 @@
+os: linux
+dist: focal
+language: ruby
+cache: bundler
+services:
+- postgresql
+addons:
+  apt:
+    sources:
+    - sourceline: deb http://dl.google.com/linux/chrome/deb/ stable main
+    packages:
+    - google-chrome-stable
+before_install: gem update bundler
+install:
+- bundle config set path 'vendor/bundle'
+- bundle install --jobs=3 --retry=3
+before_script:
+- psql -c 'create database travis_ci_test;' -U postgres
+- cp config/database.yml.travis config/database.yml
+script:
+- bundle exec rails test
+- bundle exec rails test:system
+deploy:
+  provider: heroku
+  api_key:
+    secure: ZVLV/hfPA3pZ0q8UZsKMwra1i6jvk4zugCjgEplurN98JYsc8uRzTzvwWOF17l56Mo/k0q3RJXd9ZCMjn1WOi+M1D42prwNowY6poZszEErB1WdswfOIWQymAiOQKbs/ZXB1KFUbllSzMpYB8yByqUiI45Awv29KfPsU0g5KPme6RWfpJzzrFAIkHc9MHglkBZSz5wY1M+YacSqJI9f3HppDJQX4pdEZQZknuIRi6ZpDVBJKp5QEi51QLShLrMgTdp3mYZc5A6+NjQyBnEy590EXsQN2k6KYhXkdtHDoc0+1YCc04EJRkFKGI3OkJbD+KYmhWwh9gQH2hYsN+LiudmDPeerc8hTtuNteRNPagy8HzJ0mpXwiiaSpUCsM6RLIhz67cDBLVM6/Q1L+9dZHBt2QVVjy/YibdGtkixZgzccnCbvvDrX0cJbuNVOwX+ojBP3XnKv9bZg3r4CF3GaiQvrZKBDObZjUqdmr36TV73YokueYOBNv+RZUQUlp2c5zD06mo0S9dv7czkxl2nZfm+mGUP19XR/JZ9hEDw5l6FdxFpRvZBkC2b5CTM7xBzOZKodwWV67lDgzAEIS5b7P/fBs3WAZeEjzfkWJH5VHJLLEZ77I9DeNtGJew14dO2bmaUzI8Y6q9nrwYLyUQlicr/KMHUKx5rzhurf/r3n6450=
+  app: bashrail-starter
+  on:
+    repo: rdipardo/bashrail-starter
+    branch: main
+  skip_cleanup: 'true'

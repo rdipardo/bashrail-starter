@@ -1,0 +1,47 @@
+<%#  Modified 2020-09-06 %>
+
+<header>
+    <h1>Welcome to <code><%= Rails.application.class.parent_name %></code>!</h1>
+</header>
+<main>
+    <h4>CRUD Interfaces</h4>
+    <ul>
+        <li>
+            <%= link_to 'Products', products_path, class: "btn btn-primary", :style=>'color:#FFFFFF;' %>
+        </li>
+        <li>
+            <%= link_to 'Features', pfeatures_path, class: "btn btn-primary", :style=>'color:#FFFFFF;' %>
+        </li>
+        <li>
+            <%= link_to 'Product Features', product_features_path, class: "btn btn-primary", :style=>'color:#FFFFFF;' %>
+            &nbsp;&nbsp;<span><strong>Demonstrates table joins</strong></span>
+        </li>
+        <li>
+            <%= link_to 'Countries of Origin', country_of_origins_path, class: "btn btn-primary", :style=>'color:#FFFFFF;' %>&nbsp;&nbsp;
+            <span><strong>See the <code>#show</code> view for an example of
+                    <%=link_to 'ActiveStorage', 'https://edgeguides.rubyonrails.org/active_storage_overview.html'%> in
+                    action
+                </strong></span>
+        </li>
+    </ul>
+
+    <h4>Additional Features</h4>
+    <ul>
+        <li>
+            <%= link_to 'Site Administration', '/radmin', class: "btn btn-primary", :style=>'color:#FFFFFF;'%>&nbsp;&nbsp;
+            <span><strong>A demonstration of the
+                    <%= link_to 'Paper Trail Rails plugin', 'https://rubygems.org/gems/paper_trail'%>. </strong></span>
+        </li>
+    </ul>
+    <div>
+        <blockquote>
+            <span>You must log in as the admin user first:&nbsp;&nbsp;</span>
+            <span><strong>e-mail</strong>: <code>a@e</code>&nbsp;&nbsp;</span>
+            <span><strong>password</strong>: <code>a</code></span>
+        </blockquote>
+    </div>
+    <hr>
+</main>
+<footer>
+    This app was generated with <%= link_to 'bashrail', 'https://github.com/dgleba/bashrail'%>.
+</footer>

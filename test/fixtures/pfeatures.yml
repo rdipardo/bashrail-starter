@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+<% require 'faker' %>
+one:
+  name: <%= Faker::Vehicle.drive_type %>
+  fdate: <%= Time.now %>
+  active_status: 1
+  sort_order: 1
+
+two:
+  name: <%= Faker::Vehicle.drive_type %>
+  fdate: <%= Time.now %>
+  active_status: 1
+  sort_order: 1

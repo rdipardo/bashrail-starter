@@ -1,0 +1,24 @@
+
+<p>
+  <strong>Name:</strong>
+  <%= @role.name %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @role.description %>
+</p>
+
+<p>
+  <strong>Active status:</strong>
+  <%= @role.active_status %>
+</p>
+
+<p>
+  <strong>Sort:</strong>
+  <%= @role.sort_order %>
+</p>
+
+<br>
+<%= link_to 'Edit', edit_role_path(@role), class: "btn btn-primary", :style=>'color:#FFFFFF;' %> &nbsp &nbsp
+<%= link_to 'Back', roles_path, class: "btn btn-default" %>

@@ -1,0 +1,122 @@
+#----------------------------------------------------------------------------
+# Ignore these files when commiting to a git repository.
+#
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+#
+# The original version of this file is found here:
+# https://github.com/RailsApps/rails-composer/blob/master/files/gitignore.txt
+#
+# Corrections? Improvements? Create a GitHub issue:
+# http://github.com/RailsApps/rails-composer/issues
+#----------------------------------------------------------------------------
+
+# scm revert files
+**.orig
+
+# Mac finder artifacts
+.DS_Store
+
+# Netbeans project directory
+/nbproject/
+
+# RubyMine project files
+.idea
+/nbproject/private/
+/.project
+
+# Textmate project files
+/*.tmproj
+
+# vim artifacts
+**.swp
+
+# tilde files are usually backup files from a text editor
+*~
+# keep this out of the project since it can't be present in dev mode.
+config/puma.rb
+
+# Environment files that may contain sensitive data
+.env
+.powenv
+docprivate/
+/shared/
+/deployed/
+/offline/
+db/yamldb/
+db/yamldb_date/
+/db/export
+CI-Lists/
+
+# mac stuff..
+
+._.*
+._*
+
+#----------------------------------------------------------------------------
+
+# bundler state
+/.bundle
+/vendor/bundle/
+/vendor/ruby/
+/vendor/assets/javascripts
+
+# minimal Rails specific artifacts
+/db/*.sqlite3
+/db/*.sqlite3-journal
+!/log/.keep
+/log/*
+/tmp/*
+*.log
+
+# various artifacts
+**.war
+*.rbc
+*.sassc
+.redcar/
+.sass-cache
+/backup
+/config/config.yml
+/coverage.data
+/coverage/
+/db/*.javadb/
+/doc/api/
+/doc/app/
+/doc/features.html
+/doc/specs.html
+/public/cache
+/public/stylesheets/compiled
+/public/system/*
+/storage/
+/spec/tmp/*
+/cache
+/capybara*
+/capybara-*.html
+/gems
+/specifications
+rerun.txt
+pickle-email-*.html
+.zeus.sock
+
+# Ignore (test) reports
+/brakeman-output.*
+/coverage
+/erd.pdf
+
+# Ignore results of `rake assets:precompile` or `rake bower:install`.
+/public/assets/
+/vendor/assets/bower_components/
+/npm-debug.log
+/node_modules/**/*
+
+# attachments
+/public/uploads/*
+/storage/**/*
+
+# add /config/database.yml if it contains passwords
+/config/ldap.yml
+/config/database.yml
+/config/secrets.yml
+
+# Ignore master key for decrypting credentials and more.
+/config/master.key
+/config/credentials.yml.enc

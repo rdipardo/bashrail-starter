@@ -1,0 +1,93 @@
+version: 2.1
+
+orbs:
+  ruby: circleci/ruby@1.1.2
+  node: circleci/node@4.1.0
+  heroku: circleci/heroku@1.2.3
+
+references:
+  default_ruby_version: &default_ruby_version 2.6.6-node-browsers
+  default_postgress_version: &default_postgress_version 12-alpine
+  ruby_envs: &ruby_envs
+    environment:
+      BUNDLE_JOBS: 3
+      BUNDLE_RETRY: 3
+      BUNDLE_PATH: vendor/bundle
+      PGHOST: 127.0.0.1
+      PGUSER: postgres
+      PGPASSWORD: pa$$w0rd
+      RAILS_ENV: test
+  postgres_envs: &postgres_envs
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_DB: testdb
+      POSTGRES_PASSWORD: pa$$w0rd
+
+executors:
+  ruby_with_postgres:
+    parameters:
+      ruby_tag:
+        type: string
+        default: *default_ruby_version
+      postgres_tag:
+        type: string
+        default: *default_postgress_version
+    docker:
+      - image: circleci/ruby:<< parameters.ruby_tag >>
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
+        <<: *ruby_envs
+      - image: circleci/postgres:<< parameters.postgres_tag >>
+        auth:
+          username: $DOCKERHUB_USER
+          password: $DOCKERHUB_PASSWORD
+        <<: *postgres_envs
+
+jobs:
+  test:
+    executor: ruby_with_postgres
+    steps:
+      - checkout
+      - ruby/install-deps
+      - node/install-packages:
+          cache-path: ~/project/node_modules
+          pkg-manager: yarn
+      - run:
+          name: Wait for DB
+          command: dockerize -wait tcp://localhost:5432 -timeout 1m
+      - run:
+          name: Database setup
+          command: |
+            cp config/database.yml.circle config/database.yml
+            bundle exec rails db:schema:load --trace
+      - run:
+          name: Start browser
+          command: |
+            google-chrome-stable --headless --no-sandbox --disable-gpu --remote-debugging-port=9222 http://localhost &
+      - run:
+          name: Run Tests
+          command: |
+            bundle exec rubocop .
+            bundle exec rails test
+            bundle exec rails test:system
+  deploy:
+    executor: heroku/default
+    steps:
+      - checkout
+      - heroku/install
+      - heroku/deploy-via-git:
+          app-name: bashrail-starter
+          force: true
+
+workflows:
+  test_and_deploy:
+    jobs:
+      - test:
+          context:
+            - docker-hub-creds
+      - deploy:
+          context:
+            - heroku
+          requires:
+            - test

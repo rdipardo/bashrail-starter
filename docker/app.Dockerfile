@@ -2,7 +2,7 @@ FROM ruby:2.6.6-slim-buster
 
 RUN echo "alias ll='ls -la'" >> ~/.bashrc ; chmod ugo+rw  ~/.bashrc \
   && echo "alias psg='ps -ef|grep '" >> ~/.bashrc \
-  && echo "postfix postfix/mailname string bashrail.local" | debconf-set-selections \
+  && echo "postfix postfix/mailname string $(hostname -f)" | debconf-set-selections \
   && echo "postfix postfix/main_mailer_type string 'Internet Site'" | debconf-set-selections
 
 RUN apt-get update -qq && apt-get install -y npm build-essential libpq-dev postfix

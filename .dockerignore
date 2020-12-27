@@ -1,0 +1,12 @@
+**
+!app/
+!bin/
+!config/
+!db/
+!docker/
+!public/
+!.ruby-version
+!config*
+!Gemfile
+!Procfile
+!Rakefile

@@ -24,7 +24,7 @@ gem 'jwt'
 gem 'kaminari'
 gem 'loofah', '~> 2.4'
 gem 'mini_magick'
-gem 'nokogiri', '~>1.10'
+gem 'nokogiri', '~>1.11'
 gem 'paper_trail'
 gem 'populator'
 gem 'puma', '~> 4.3'
@@ -50,7 +50,7 @@ end
 
 group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'rubocop', '~> 0.78'
+  gem 'rubocop', '~> 1.7'
 end
 
 group :development do
